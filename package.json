@@ -1,0 +1,21 @@
+{
+  "name": "limitless-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^2.9.30",
+    "browserify": "^10.2.4",
+    "express": "^4.13.0",
+    "mocha": "^2.2.5",
+    "morgan": "^1.6.0",
+    "plastiq": "^1.17.2",
+    "pogo": "^0.9.10",
+    "pogoify": "^0.1.1"
+  }
+}
