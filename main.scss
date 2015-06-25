@@ -1,6 +1,9 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "animate.scss";
+
 $neon: #42dca3;
 $navBlue: #435f6e;
+$darkBlue: #364d59;
 body {
   margin: 0;
   overflow: scroll;
@@ -20,6 +23,7 @@ body {
     cursor: pointer;
     letter-spacing: 1px;
     color: white;
+    background: transparent;
     display: inline;
     padding: 16.5px;
     font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -37,9 +41,9 @@ body {
   border: none;
   & li.active,
   & li:hover {
-    background: white;
+    background: $darkBlue;
     & a {
-      color: black;
+      color: $neon;
     }
   }
 }
@@ -64,17 +68,20 @@ body {
 .section {
   min-height: 100vh;
   position: relative;
-  padding-top: 70px;
   text-align: center;
   &#home {
-    padding-top: 0px;
+    padding-top: 0;
   }
   &#about {
     background: $navBlue;
     color: white;
+    padding-bottom: 50px;
+    & #carousel {
+      margin: auto;
+    }
   }
   &#products {
-    background: blue;
+    background: $darkBlue;
   }
   &#contact {
     background: yellow;
@@ -101,15 +108,16 @@ body {
 }
 .button {
   border: 1px solid #42dca3;
-    outline: 0;
-    color: #42dca3;
-    width: 150px;
-    height: 50px;
-    line-height: 38px;
-    cursor: pointer;
-    margin: 30px auto auto;
-    border-radius: 0px;
-  &:hover,&:active {
+  outline: 0;
+  color: #42dca3;
+  width: 150px;
+  height: 50px;
+  line-height: 38px;
+  cursor: pointer;
+  margin: 30px auto auto;
+  border-radius: 0;
+  &:hover,
+  &:active {
     background: $neon;
     color: white !important;
   }
@@ -131,7 +139,7 @@ body {
   }
 }
 h1 {
-  margin-top: 0;
+  margin: 0;
   padding-top: 20px;
   font-size: 55px;
   text-shadow: #42dca3 1px 1px;
@@ -188,7 +196,8 @@ p {
 }
 @media (max-width: 768px) {
   .navbar-collapse {
-    background: black;
+    background: $navBlue;
+    border-color: $navBlue;
   }
   #nav-links {
     text-align: center;
@@ -199,46 +208,92 @@ p {
     padding: 5px;
   }
 }
+
 ///// CAROUSEL
-.carousel-fade{
-  & .carousel-inner{
-    & .item{
+.carousel-fade {
+  & .carousel-inner {
+    & .item {
       opacity: 0;
       -webkit-transition-property: opacity;
       -moz-transition-property: opacity;
       -o-transition-property: opacity;
       transition-property: opacity;
     }
-    & .active{
+    & .active {
       opacity: 1;
-      &.left , &.right{
+      &.left,
+      &.right {
         left: 0;
         opacity: 0;
         z-index: 1;
       }
-      &.right{
+      &.right {
         opacity: 1;
       }
     }
-    & .next.left,& .prev.right{
+    & .next.left,
+    & .prev.right {
       opacity: 1;
     }
   }
 }
+.carousel-inner {
+  max-width: 700px;
+  height: 400px;
+  margin: auto;
+}
 .item {
-  height: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-repeat: no-repeat;
-  &:nth-child(1){
-    background: url('http://lorempixel.com/1500/600/abstract/1');
+  max-width: 700px;
+  height: 400px;
+  &:nth-child(1) {
+    background: url("http://lorempixel.com/700/400/transport/1");
   }
   &:nth-child(2) {
-    background: url('http://lorempixel.com/1500/600/abstract/2');
+    background: url("http://lorempixel.com/700/400/transport/2");
   }
   &:nth-child(3) {
-    background: url('http://lorempixel.com/1500/600/abstract/3');
+    background: url("http://lorempixel.com/700/400/transport/3");
   }
+}
+p:nth-child(2n) {
+  color: $neon;
+}
+.carousel-caption {
+  z-index: 3;
+  text-shadow: black 3px 3px;
+  & p {
+    color: white;
+  }
+}
+h2{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.blur {
+  -webkit-filter: blur(12px);
+  -moz-filter: blur(12px);
+  -o-filter: blur(12x);
+  -ms-filter: blur(12px);
+  filter:blur(12px);
+}
+.product-items{
+  height: 150px;
+   background-color: #ddd;
+   margin-bottom: 30px;
+   &:nth-child(1) {
+     background: url("http://lorempixel.com/500/150/nightlife/1");
+   }
+   &:nth-child(2) {
+     background: url("http://lorempixel.com/500/150/nightlife/2");
+   }
+   &:nth-child(3) {
+     background: url("http://lorempixel.com/500/150/nightlife/3");
+   }
+}
+.container {
+  margin-top: 50px;
 }

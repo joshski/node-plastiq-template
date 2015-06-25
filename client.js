@@ -20,7 +20,7 @@ function smoothScroll(ev) {
 };
 function render(model) {
   return h('div',
-    h('nav#nav.navbar.navbar-default',{attributes: {'role': 'navigation'}},
+    h('nav#nav.navbar.navbar-default.wow.bounceInDown',{attributes: {'role': 'navigation','data-wow-delay': '0.2s'}},
         h('button.navbar-toggle',{attributes: {'data-toggle': 'collapse','data-target': '.navbar-collapse'}},
           h('span.icon-bar.top-bar'),
           h('span.icon-bar.middle-bar'),
@@ -60,31 +60,67 @@ function render(model) {
       h('div#home.section',
         h('div#banner'),
         h('div.overlay'),
-        h('div#banner-title',
+        h('div#banner-title.wow.bounceInUp',{attributes: {'data-wow-delay': '0.4s'}},
           h('h1', 'Welcome!'),
           h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
-          h('a.btn.button',{
+          h('a.btn.button.wow.shake',{
             href: '#about',
-            onclick: smoothScroll
+            onclick: smoothScroll,
+            attributes: {'data-wow-delay': '2s'}
           }, 'Explore')
         )
       ),
       h('div#about.section',
         h('h1', 'About'),
-        h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
-        h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part ula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
-        h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
+        h('p.wow.bounceInUp',{attributes: {'role': 'navigation','data-wow-delay': '0.4s'}},
+         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
+        h('p.wow.bounceInDown',{attributes: {'role': 'navigation','data-wow-delay': '0.6s'}},
+         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part ula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
+        h('p.wow.bounceInUp',{attributes: {'role': 'navigation','data-wow-delay': '0.8s'}},
+         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
         h('h2', 'More'),
-        h('div#carousel.carousel.slide.carousel-fade',
+        h('div#carousel.carousel.slide.carousel-fade.wow.bounceInUp',{attributes: {'role': 'navigation','data-wow-delay': '0.6s'}},
           h('div.carousel-inner',
-            h('div.item.active'),
-            h('div.item'),
-            h('div.item')
+            h('div.item.active',
+              h('div.carousel-caption',
+                h('div.blur'),
+                h('h2', 'Slide 1'),
+                h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa')
+              )
+            ),
+            h('div.item',
+              h('div.carousel-caption',
+                h('h2', 'Slide 2'),
+                h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa')
+              )
+            ),
+            h('div.item',
+              h('div.carousel-caption',
+                h('h2', 'Slide 3'),
+                h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa')
+              )
+            )
           )
         )
       ),
       h('div#products.section',
-        h('h1', 'Products')
+        h('h1', 'Products'),
+        h('div.container',
+          h('div.row',
+            h('div.col-sm-3.col-xs-6',
+              h('div.product-items')
+            ),
+            h('div.col-sm-3.col-xs-6',
+              h('div.product-items')
+            ),
+            h('div.col-sm-3.col-xs-6',
+              h('div.product-items')
+            ),
+            h('div.col-sm-3.col-xs-6',
+              h('div.product-items')
+            )
+          )
+        )
       ),
       h('div#contact.section',
         h('h1', 'Contact')
@@ -95,7 +131,10 @@ function render(model) {
 
 $(document).ready(function() {
   $('body').scrollspy();
-  $('#carousel').carousel();
+  new WOW().init();
+  $('#carousel').carousel({
+  interval: 8000
+});
   $(".navbar-nav li a").click(function (event) {
     $(".navbar-collapse").collapse('hide');
     $(".navbar-toggle").toggleClass("toggled");
@@ -108,7 +147,6 @@ $(document).ready(function() {
   $(window).scroll(function(){
     var body = $('body');
     var top = $(this).scrollTop();
-    $('.carousel-inner.item').css('top', top / 2);
   });
 plastiq.append(document.body, render, {
   name: ''
