@@ -1,5 +1,6 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 $neon: #42dca3;
+$navBlue: #435f6e;
 body {
   margin: 0;
   overflow: scroll;
@@ -8,7 +9,7 @@ body {
 #nav {
   width: 100%;
   height: 50px;
-  background: black;
+  background: $navBlue;
   display: inline-block;
   position: fixed;
   z-index: 2;
@@ -25,10 +26,10 @@ body {
   }
 }
 .navbar-nav {
-  margin: 0px;
+  margin: 0;
 }
 .navbar-collapse {
-  padding: 0px;
+  padding: 0;
 }
 #nav-links {
   text-align: right;
@@ -61,11 +62,16 @@ body {
   background-size: cover;
 }
 .section {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
-  padding-top: 50px;
+  padding-top: 70px;
+  text-align: center;
+  &#home {
+    padding-top: 0px;
+  }
   &#about {
-    background: red;
+    background: $navBlue;
+    color: white;
   }
   &#products {
     background: blue;
@@ -94,17 +100,21 @@ body {
   letter-spacing: 2px;
 }
 .button {
-  border: 1px solid $neon;
-  outline: 0;
-  color: $neon;
-  width: 150px;
-  height: 50px;
-  line-height: 50px;
-  cursor: pointer;
-  margin: 30px auto auto;
-  &:hover {
+  border: 1px solid #42dca3;
+    outline: 0;
+    color: #42dca3;
+    width: 150px;
+    height: 50px;
+    line-height: 38px;
+    cursor: pointer;
+    margin: 30px auto auto;
+    border-radius: 0px;
+  &:hover,&:active {
     background: $neon;
-    color: white;
+    color: white !important;
+  }
+  &:focus {
+    color: white !important;
   }
 }
 #about {
@@ -124,6 +134,14 @@ h1 {
   margin-top: 0;
   padding-top: 20px;
   font-size: 55px;
+  text-shadow: #42dca3 1px 1px;
+}
+p {
+  max-width: 700px;
+  margin: auto;
+  line-height: 26px;
+  letter-spacing: 2px;
+  margin-top: 30px;
 }
 #main {
   overflow: auto;
@@ -136,35 +154,27 @@ h1 {
   border: none;
   border-radius: 0;
   & .icon-bar {
-    background: white !important;
+    background: #42dca3 !important;
+    position: relative;
+    transition: all 300ms ease-in-out;
   }
-}
-.navbar-toggle .icon-bar:nth-of-type(2) {
-	  top: 1px;
-}
-
-.navbar-toggle .icon-bar:nth-of-type(3) {
-  	top: 2px;
-}
-
-.navbar-toggle .icon-bar {
-	  position: relative;
-	  transition: all 300ms ease-in-out;
-}
-
-.navbar-toggle.toggled .icon-bar:nth-of-type(1) {
-	  top: 6px;
-	  transform: rotate(45deg);
-}
-
-.navbar-toggle.toggled .icon-bar:nth-of-type(2) {
-	  background-color: transparent !important;
-
-}
-
-.navbar-toggle.toggled .icon-bar:nth-of-type(3) {
-	  top: -6px;
-	  transform: rotate(-45deg);
+  & .icon-bar:nth-of-type(2) {
+    top: 1px;
+  }
+  & .icon-bar:nth-of-type(3) {
+    top: 2px;
+  }
+  &.toggled .icon-bar:nth-of-type(1) {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+  &.toggled .icon-bar:nth-of-type(2) {
+    background-color: transparent !important;
+  }
+  &.toggled .icon-bar:nth-of-type(3) {
+    top: -6px;
+    transform: rotate(-45deg);
+  }
 }
 @media (min-width: 768px) {
   .navbar-collapse.collapse {
@@ -187,5 +197,48 @@ h1 {
   #nav li a {
     display: block;
     padding: 5px;
+  }
+}
+///// CAROUSEL
+.carousel-fade{
+  & .carousel-inner{
+    & .item{
+      opacity: 0;
+      -webkit-transition-property: opacity;
+      -moz-transition-property: opacity;
+      -o-transition-property: opacity;
+      transition-property: opacity;
+    }
+    & .active{
+      opacity: 1;
+      &.left , &.right{
+        left: 0;
+        opacity: 0;
+        z-index: 1;
+      }
+      &.right{
+        opacity: 1;
+      }
+    }
+    & .next.left,& .prev.right{
+      opacity: 1;
+    }
+  }
+}
+.item {
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  &:nth-child(1){
+    background: url('http://lorempixel.com/1500/600/abstract/1');
+  }
+  &:nth-child(2) {
+    background: url('http://lorempixel.com/1500/600/abstract/2');
+  }
+  &:nth-child(3) {
+    background: url('http://lorempixel.com/1500/600/abstract/3');
   }
 }

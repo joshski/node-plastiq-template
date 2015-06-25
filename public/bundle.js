@@ -65,27 +65,39 @@ function render(model) {
         h('div#banner-title',
           h('h1', 'Welcome!'),
           h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
-
-          h('div.button', 'Explore')
+          h('a.btn.button',{
+            href: '#about',
+            onclick: smoothScroll
+          }, 'Explore')
         )
       ),
       h('div#about.section',
-        h('h1', 'about'),
-        h('div.overlay')
+        h('h1', 'About'),
+        h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
+        h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part ula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
+        h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
+        h('h2', 'More'),
+        h('div#carousel.carousel.slide.carousel-fade',
+          h('div.carousel-inner',
+            h('div.item.active'),
+            h('div.item'),
+            h('div.item')
+          )
+        )
       ),
       h('div#products.section',
-        h('h1', 'products'),
-        h('div.overlay')
+        h('h1', 'Products')
       ),
       h('div#contact.section',
-        h('h1', 'contact'),
-        h('div.overlay')
+        h('h1', 'Contact')
       )
     )
   );
 }
+
 $(document).ready(function() {
   $('body').scrollspy();
+  $('#carousel').carousel();
   $(".navbar-nav li a").click(function (event) {
     $(".navbar-collapse").collapse('hide');
     $(".navbar-toggle").toggleClass("toggled");
@@ -95,6 +107,11 @@ $(document).ready(function() {
       $(this).toggleClass("toggled");
   });
 });
+  $(window).scroll(function(){
+    var body = $('body');
+    var top = $(this).scrollTop();
+    $('.carousel-inner.item').css('top', top / 2);
+  });
 plastiq.append(document.body, render, {
   name: ''
 });
