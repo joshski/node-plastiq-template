@@ -1,13 +1,22 @@
 var express = require('express');
-var app = express()
+var sass = require('node-sass');
+var sassMiddleware = require('node-sass-middleware');
+var path = require('path');
+var app = express();
 var morgan = require('morgan');
 var jquery = require('jquery');
 
+app.use(sassMiddleware({
+    src: __dirname,
+    dest: path.join(__dirname, 'public'),
+    debug: true,
+    outputStyle: 'compressed',
+    prefix:  '/'
+}));
 app.use(morgan('combined'))
-// respond with "hello world" when a GET request is made to the homepage
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', function(req, res) {
     res.send('hello world');
 });
-
 app.listen(4321);

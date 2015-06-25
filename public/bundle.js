@@ -1,15 +1,30 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var plastiq = require('plastiq');
+var scrollSpy = require('./scrollspy.js');
+
 var h = plastiq.html;
 
 function smoothScroll(ev) {
   var target = $(ev.target);
   var body = $('body');
   var scrollTo = $(target.attr('href')).offset().top;
-  $('html, body').animate({ scrollTop: scrollTo},800);
+  $('html, body').animate({
+    scrollTop: scrollTo
+  }, 800);
   ev.preventDefault();
   return false;
 };
+$(document).ready(function() {
+  $('#nav-links').scrollspy({
+    min: $('#nav-links').offset().top,
+    onEnter: function(element, position) {
+      $(element).addClass('fixed');
+    },
+    onLeave: function(element, position) {
+      $("#nav-links a").removeClass('fixed');
+    }
+  });
+});
 
 function render(model) {
   return h('div',
@@ -19,10 +34,22 @@ function render(model) {
         h('span', 'My Business')
       ),
       h('div#nav-links',
-        h('a',{href: '#home' , onclick: smoothScroll }, 'Home'),
-        h('a',{href: '#about', onclick: smoothScroll  }, 'About'),
-        h('a',{href: '#products', onclick: smoothScroll  }, 'Products'),
-        h('a',{href: '#contact', onclick: smoothScroll  }, 'Contact')
+        h('a', {
+          href: '#home',
+          onclick: smoothScroll
+        }, 'Home'),
+        h('a', {
+          href: '#about',
+          onclick: smoothScroll
+        }, 'About'),
+        h('a', {
+          href: '#products',
+          onclick: smoothScroll
+        }, 'Products'),
+        h('a', {
+          href: '#contact',
+          onclick: smoothScroll
+        }, 'Contact')
       )
     ),
     h('div#home.section',
@@ -34,15 +61,15 @@ function render(model) {
       )
     ),
     h('div#about.section',
-      h('h1','about'),
+      h('h1', 'about'),
       h('div.overlay')
     ),
     h('div#products.section',
-      h('h1','products'),
+      h('h1', 'products'),
       h('div.overlay')
     ),
     h('div#contact.section',
-      h('h1','contact'),
+      h('h1', 'contact'),
       h('div.overlay')
     )
   );
@@ -52,7 +79,7 @@ plastiq.append(document.body, render, {
   name: ''
 });
 
-},{"plastiq":6}],2:[function(require,module,exports){
+},{"./scrollspy.js":45,"plastiq":6}],2:[function(require,module,exports){
 
 },{}],3:[function(require,module,exports){
 var vtext = require("virtual-dom/vnode/vtext.js")
@@ -2491,4 +2518,103 @@ module.exports = function (attributes, vdom, refreshFunction) {
   return new WindowWidget(attributes, vdom, refreshFunction);
 };
 
-},{"./domComponent":5,"virtual-dom/vnode/vtext.js":37}]},{},[1]);
+},{"./domComponent":5,"virtual-dom/vnode/vtext.js":37}],45:[function(require,module,exports){
+/*!
+ * jQuery Scrollspy Plugin
+ * Author: @sxalexander
+ * Licensed under the MIT license
+ */
+;(function ( $, window, document, undefined ) {
+
+    $.fn.extend({
+      scrollspy: function ( options ) {
+
+          var defaults = {
+            min: 0,
+            max: 0,
+            mode: 'vertical',
+            namespace: 'scrollspy',
+            buffer: 0,
+            container: window,
+            onEnter: options.onEnter ? options.onEnter : [],
+            onLeave: options.onLeave ? options.onLeave : [],
+            onTick: options.onTick ? options.onTick : []
+          }
+
+          var options = $.extend( {}, defaults, options );
+
+          return this.each(function (i) {
+
+              var element = this;
+              var o = options;
+              var $container = $(o.container);
+              var mode = o.mode;
+              var buffer = o.buffer;
+              var enters = leaves = 0;
+              var inside = false;
+
+              /* add listener to container */
+              $container.bind('scroll.' + o.namespace, function(e){
+                  var position = {top: $(this).scrollTop(), left: $(this).scrollLeft()};
+                  var xy = (mode == 'vertical') ? position.top + buffer : position.left + buffer;
+                  var max = o.max;
+                  var min = o.min;
+
+                  /* fix max */
+                  if($.isFunction(o.max)){
+                    max = o.max();
+                  }
+
+                  /* fix max */
+                  if($.isFunction(o.min)){
+                    min = o.min();
+                  }
+
+                  if(max == 0){
+                      max = (mode == 'vertical') ? $container.height() : $container.outerWidth() + $(element).outerWidth();
+                  }
+
+                  /* if we have reached the minimum bound but are below the max ... */
+                  if(xy >= min && xy <= max){
+                    /* trigger enter event */
+                    if(!inside){
+                       inside = true;
+                       enters++;
+
+                       /* fire enter event */
+                       $(element).trigger('scrollEnter', {position: position})
+                       if($.isFunction(o.onEnter)){
+                         o.onEnter(element, position);
+                       }
+
+                     }
+
+                     /* trigger tick event */
+                     $(element).trigger('scrollTick', {position: position, inside: inside, enters: enters, leaves: leaves})
+                     if($.isFunction(o.onTick)){
+                       o.onTick(element, position, inside, enters, leaves);
+                     }
+                  }else{
+
+                    if(inside){
+                      inside = false;
+                      leaves++;
+                      /* trigger leave event */
+                      $(element).trigger('scrollLeave', {position: position, leaves:leaves})
+
+                      if($.isFunction(o.onLeave)){
+                        o.onLeave(element, position);
+                      }
+                    }
+                  }
+              });
+
+          });
+      }
+
+    })
+
+
+})( jQuery, window, document, undefined );
+
+},{}]},{},[1]);

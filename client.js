@@ -1,14 +1,31 @@
 var plastiq = require('plastiq');
+var scrollSpy = require('./scrollspy.js');
+
 var h = plastiq.html;
+
+
 
 function smoothScroll(ev) {
   var target = $(ev.target);
   var body = $('body');
   var scrollTo = $(target.attr('href')).offset().top;
-  $('html, body').animate({ scrollTop: scrollTo},800);
+  $('html, body').animate({
+    scrollTop: scrollTo
+  }, 800);
   ev.preventDefault();
   return false;
 };
+$(document).ready(function() {
+  $('#nav-links').scrollspy({
+    min: $('#nav-links').offset().top,
+    onEnter: function(element, position) {
+      $(element).addClass('fixed');
+    },
+    onLeave: function(element, position) {
+      $("#nav-links a").removeClass('fixed');
+    }
+  });
+});
 
 function render(model) {
   return h('div',
@@ -18,10 +35,22 @@ function render(model) {
         h('span', 'My Business')
       ),
       h('div#nav-links',
-        h('a',{href: '#home' , onclick: smoothScroll }, 'Home'),
-        h('a',{href: '#about', onclick: smoothScroll  }, 'About'),
-        h('a',{href: '#products', onclick: smoothScroll  }, 'Products'),
-        h('a',{href: '#contact', onclick: smoothScroll  }, 'Contact')
+        h('a', {
+          href: '#home',
+          onclick: smoothScroll
+        }, 'Home'),
+        h('a', {
+          href: '#about',
+          onclick: smoothScroll
+        }, 'About'),
+        h('a', {
+          href: '#products',
+          onclick: smoothScroll
+        }, 'Products'),
+        h('a', {
+          href: '#contact',
+          onclick: smoothScroll
+        }, 'Contact')
       )
     ),
     h('div#home.section',
@@ -33,15 +62,15 @@ function render(model) {
       )
     ),
     h('div#about.section',
-      h('h1','about'),
+      h('h1', 'about'),
       h('div.overlay')
     ),
     h('div#products.section',
-      h('h1','products'),
+      h('h1', 'products'),
       h('div.overlay')
     ),
     h('div#contact.section',
-      h('h1','contact'),
+      h('h1', 'contact'),
       h('div.overlay')
     )
   );
