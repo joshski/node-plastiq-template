@@ -22,9 +22,9 @@ function render(model) {
   return h('div',
     h('nav#nav.navbar.navbar-default',{attributes: {'role': 'navigation'}},
         h('button.navbar-toggle',{attributes: {'data-toggle': 'collapse','data-target': '.navbar-collapse'}},
-          h('span.icon-bar'),
-          h('span.icon-bar'),
-          h('span.icon-bar')
+          h('span.icon-bar.top-bar'),
+          h('span.icon-bar.middle-bar'),
+          h('span.icon-bar.bottom-bar')
         ),
         h('a.logo',
           h('i.fa.fa-money'),
@@ -86,8 +86,12 @@ $(document).ready(function() {
   $('body').scrollspy();
   $(".navbar-nav li a").click(function (event) {
     $(".navbar-collapse").collapse('hide');
-  });
+    $(".navbar-toggle").toggleClass("toggled");
 
+  });
+  $(".navbar-toggle").on("click", function () {
+      $(this).toggleClass("toggled");
+  });
 });
 plastiq.append(document.body, render, {
   name: ''
