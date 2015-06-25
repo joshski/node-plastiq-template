@@ -1,6 +1,9 @@
 var plastiq = require('plastiq');
-var scrollSpy = require('./scrollspy.js');
+var jquery = require('jquery');
+global.jQuery = jquery;
+global.$ = jquery;
 
+var bootstrap = require('bootstrap-sass');
 var h = plastiq.html;
 
 
@@ -15,67 +18,65 @@ function smoothScroll(ev) {
   ev.preventDefault();
   return false;
 };
-$(document).ready(function() {
-  $('#nav-links').scrollspy({
-    min: $('#nav-links').offset().top,
-    onEnter: function(element, position) {
-      $(element).addClass('fixed');
-    },
-    onLeave: function(element, position) {
-      $("#nav-links a").removeClass('fixed');
-    }
-  });
-});
-
 function render(model) {
   return h('div',
-    h('header#nav',
+    h('div#nav.collapse.navbar-collapse',
       h('a.logo',
         h('i.fa.fa-money'),
         h('span', 'My Business')
       ),
-      h('div#nav-links',
-        h('a', {
-          href: '#home',
-          onclick: smoothScroll
-        }, 'Home'),
-        h('a', {
-          href: '#about',
-          onclick: smoothScroll
-        }, 'About'),
-        h('a', {
-          href: '#products',
-          onclick: smoothScroll
-        }, 'Products'),
-        h('a', {
-          href: '#contact',
-          onclick: smoothScroll
-        }, 'Contact')
+      h('ul#nav-links.nav',
+        h('li',
+          h('a', {
+            href: '#home',
+            onclick: smoothScroll
+          }, 'Home')
+        ),
+        h('li',
+          h('a', {
+            href: '#about',
+            onclick: smoothScroll
+          }, 'About')),
+        h('li',
+          h('a', {
+            href: '#products',
+            onclick: smoothScroll
+          }, 'Products')),
+        h('li',
+          h('a', {
+            href: '#contact',
+            onclick: smoothScroll
+          }, 'Contact'))
       )
     ),
-    h('div#home.section',
-      h('div#banner'),
-      h('div.overlay'),
-      h('div#banner-title',
-        h('h1', 'Welcome!'),
-        h('div.button', 'Explore')
+    h('div#main',
+      h('div#home.section',
+        h('div#banner'),
+        h('div.overlay'),
+        h('div#banner-title',
+          h('h1', 'Welcome!'),
+          h('div.button', 'Explore')
+        )
+      ),
+      h('div#about.section',
+        h('h1', 'about'),
+        h('div.overlay')
+      ),
+      h('div#products.section',
+        h('h1', 'products'),
+        h('div.overlay')
+      ),
+      h('div#contact.section',
+        h('h1', 'contact'),
+        h('div.overlay')
       )
-    ),
-    h('div#about.section',
-      h('h1', 'about'),
-      h('div.overlay')
-    ),
-    h('div#products.section',
-      h('h1', 'products'),
-      h('div.overlay')
-    ),
-    h('div#contact.section',
-      h('h1', 'contact'),
-      h('div.overlay')
     )
   );
 }
+$(document).ready(function() {
+  $('body').scrollspy();
 
+});
 plastiq.append(document.body, render, {
   name: ''
 });

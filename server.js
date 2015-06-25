@@ -4,7 +4,6 @@ var sassMiddleware = require('node-sass-middleware');
 var path = require('path');
 var app = express();
 var morgan = require('morgan');
-var jquery = require('jquery');
 
 app.use(sassMiddleware({
     src: __dirname,
