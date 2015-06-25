@@ -20,33 +20,40 @@ function smoothScroll(ev) {
 };
 function render(model) {
   return h('div',
-    h('div#nav.collapse.navbar-collapse',
-      h('a.logo',
-        h('i.fa.fa-money'),
-        h('span', 'My Business')
-      ),
-      h('ul#nav-links.nav',
-        h('li',
-          h('a', {
-            href: '#home',
-            onclick: smoothScroll
-          }, 'Home')
+    h('nav#nav.navbar.navbar-default',{attributes: {'role': 'navigation'}},
+        h('button.navbar-toggle',{attributes: {'data-toggle': 'collapse','data-target': '.navbar-collapse'}},
+          h('span.icon-bar'),
+          h('span.icon-bar'),
+          h('span.icon-bar')
         ),
-        h('li',
-          h('a', {
-            href: '#about',
-            onclick: smoothScroll
-          }, 'About')),
-        h('li',
-          h('a', {
-            href: '#products',
-            onclick: smoothScroll
-          }, 'Products')),
-        h('li',
-          h('a', {
-            href: '#contact',
-            onclick: smoothScroll
-          }, 'Contact'))
+        h('a.logo',
+          h('i.fa.fa-money'),
+          h('span', 'My Business')
+        ),
+      h('div.collapse.navbar-collapse',
+        h('ul#nav-links.nav.navbar-nav',
+          h('li',
+            h('a', {
+              href: '#home',
+              onclick: smoothScroll
+            }, 'Home')
+          ),
+          h('li',
+            h('a', {
+              href: '#about',
+              onclick: smoothScroll
+            }, 'About')),
+          h('li',
+            h('a', {
+              href: '#products',
+              onclick: smoothScroll
+            }, 'Products')),
+          h('li',
+            h('a', {
+              href: '#contact',
+              onclick: smoothScroll
+            }, 'Contact'))
+        )
       )
     ),
     h('div#main',
@@ -55,6 +62,8 @@ function render(model) {
         h('div.overlay'),
         h('div#banner-title',
           h('h1', 'Welcome!'),
+          h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
+
           h('div.button', 'Explore')
         )
       ),
@@ -75,6 +84,9 @@ function render(model) {
 }
 $(document).ready(function() {
   $('body').scrollspy();
+  $(".navbar-nav li a").click(function (event) {
+    $(".navbar-collapse").collapse('hide');
+  });
 
 });
 plastiq.append(document.body, render, {

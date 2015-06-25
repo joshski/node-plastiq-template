@@ -1,8 +1,8 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-
-body{
-  margin: 0px;
-  overflow:scroll;
+$neon: #42dca3;
+body {
+  margin: 0;
+  overflow: scroll;
   height: 100%;
 }
 #nav {
@@ -12,85 +12,139 @@ body{
   display: inline-block;
   position: fixed;
   z-index: 2;
-  & a{
-    color: white;
+  border: none;
+  border-radius: 0px;
+  & a {
     line-height: 50px;
-    padding: 20px;
     cursor: pointer;
     letter-spacing: 1px;
+    color: white;
+    display: inline;
+    padding: 16.5px;
     font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
 }
-#nav-links{
+#nav-links {
   text-align: right;
   float: right;
-  & a:hover {
+  border: none;
+  & li.active,
+  & li:hover {
     background: white;
-    color: black;
+    & a {
+      color: black;
+    }
+  }
+}
+.nav {
+  padding: 0;
+}
+.nav>li>a:hover,
+.nav>li>a:focus {
+  background-color: transparent;
+  &.nav>li {
+    background: white;
   }
 }
 #banner {
   height: 100%;
-  background: url(https://raw.githubusercontent.com/IronSummitMedia/startbootstrap-stylish-portfolio/gh-pages/img/bg.jpg) no-repeat center center fixed;
--webkit-background-size: cover;
-   -moz-background-size: cover;
-     -o-background-size: cover;
-        background-size: cover;
-
+  background: url("https://raw.githubusercontent.com/IronSummitMedia/startbootstrap-stylish-portfolio/gh-pages/img/bg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .section {
   height: 100vh;
   position: relative;
+  padding-top: 50px;
+  &#about{
+    background: red;
+  }
+  &#products{
+    background: blue;
+  }
+  &#contact{
+    background: yellow;
+  }
 }
-.overlay{
+.overlay {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
 }
-#banner-title{
-  max-width:400px;
+#banner-title {
+  max-width: 400px;
   margin: auto;
   position: absolute;
   color: white;
-  bottom:20%;
+  bottom: 20%;
   left: 0;
   right: 0;
   text-align: center;
   padding: 50px;
+  letter-spacing: 2px;
 }
 .button {
-  border: 1px solid #42dca3;
+  border: 1px solid $neon;
   outline: 0;
-  color: #42dca3;
+  color: $neon;
   width: 150px;
   height: 50px;
   line-height: 50px;
   cursor: pointer;
   margin: auto;
-  &:hover{
-    background: #42dca3;
+  margin-top: 30px;
+  &:hover {
+    background: $neon;
     color: white;
   }
 }
 #about {
   background: white;
-  width:100%;
+  width: 100%;
 }
-.logo{
-padding: 15px 15px;
-font-size: 18px;
-font-weight:100;
+.logo {
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 100;
 }
 h1 {
-  margin-top:0px;
+  margin-top: 0;
   padding-top: 20px;
-}
-.active {
-    border: 1px solid black;
+  font-size: 55px;
 }
 #main {
   overflow: auto;
   min-height: 100vh;
+}
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+  background: transparent;
+}
+@media (min-width: 768px) {
+  .navbar-collapse.collapse {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  #nav-links {
+    display: inline-flex;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-collapse {
+    background: black;
+  }
+  #nav-links {
+    text-align: center;
+    float: none;
+  }
+  #nav li a  {
+    display: block;
+    padding: 5px;
+  }
 }
