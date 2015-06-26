@@ -265,10 +265,12 @@ function render(model) {
               )
             )
           )
-        )
+
+        ),
+        h('div.banner')
+
       ),
       h('div#products.section',
-        h('div.banner'),
         h('h1', 'Products'),
         h('div.container',
           h('div.row',
@@ -282,7 +284,11 @@ function render(model) {
                   attributes: {
                     'src': 'http://lorempixel.com/450/350/nightlife/1'
                   }
-                })
+                }),
+                h('div.grid-caption',
+                  h('h4', 'Product title'),
+                  h('p', 'Here you can find some of our latest works,  Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. to see the details of these works just click the thumbnails below.')
+                )
               )
             ),
             h('div.col-md-4.wow.bounceIn', {
@@ -295,8 +301,13 @@ function render(model) {
                   attributes: {
                     'src': 'http://lorempixel.com/450/350/nightlife/2'
                   }
-                })
-              )),
+                }),
+                h('div.grid-caption',
+                  h('h4', 'Product title'),
+                  h('p', 'Here you can find some of our latest works,  Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. to see the details of these works just click the thumbnails below.')
+                )
+              )
+            ),
             h('div.col-md-4.wow.bounceIn', {
                 attributes: {
                   'data-wow-delay': '0.4s'
@@ -307,7 +318,11 @@ function render(model) {
                   attributes: {
                     'src': 'http://lorempixel.com/450/350/nightlife/3'
                   }
-                })
+                }),
+                h('div.grid-caption',
+                  h('h4', 'Product title'),
+                  h('p', 'Here you can find some of our latest works,  Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. to see the details of these works just click the thumbnails below.')
+                )
               )),
             h('div.col-md-4.wow.bounceIn', {
                 attributes: {
@@ -319,7 +334,11 @@ function render(model) {
                   attributes: {
                     'src': 'http://lorempixel.com/450/350/nightlife/4'
                   }
-                })
+                }),
+                h('div.grid-caption',
+                  h('h4', 'Product title'),
+                  h('p', 'Here you can find some of our latest works,  Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. to see the details of these works just click the thumbnails below.')
+                )
               )),
             h('div.col-md-4.wow.bounceIn', {
                 attributes: {
@@ -331,7 +350,11 @@ function render(model) {
                   attributes: {
                     'src': 'http://lorempixel.com/450/350/nightlife/5'
                   }
-                })
+                }),
+                h('div.grid-caption',
+                  h('h4', 'Product title'),
+                  h('p', 'Here you can find some of our latest works,  Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. to see the details of these works just click the thumbnails below.')
+                )
               )),
             h('div.col-md-4.wow.bounceIn', {
                 attributes: {
@@ -343,13 +366,18 @@ function render(model) {
                   attributes: {
                     'src': 'http://lorempixel.com/450/350/nightlife/6'
                   }
-                })
+                }),
+                h('div.grid-caption',
+                  h('h4', 'Product title'),
+                  h('p', 'Here you can find some of our latest works,  Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. to see the details of these works just click the thumbnails below.')
+                )
               ))
           )
-        )
+        ),
+        h('div.banner')
+
       ),
       h('div#contact.section',
-        h('div.banner'),
         h('h1', 'Contact'),
         h('div.container',
           h('div.contact-details',

@@ -69,33 +69,36 @@ body {
   position: relative;
   text-align: center;
   background: $navBlue;
-
+  & h1{
+    padding-top: 100px;
+  }
   &#home {
-    padding-top: 0;
+    padding-top: 0px;
   & .banner {
-      background: url("https://raw.githubusercontent.com/IronSummitMedia/startbootstrap-stylish-portfolio/gh-pages/img/bg.jpg") no-repeat center center fixed;
+      background: url("images/banner1.jpg") no-repeat center center fixed;
       height: 100%;
 
     }
   }
   &#about {
     color: white;
-    padding-bottom: 50px;
     background: $navBlue;
 
     & #carousel {
       margin: auto;
+      margin-bottom: 100px;
     }
+    & .banner {
+      background: url("images/banner2.jpg") no-repeat center center fixed;
+    }
+
   }
   &#products {
     & .banner {
-      background: url("http://ironsummitmedia.github.io/startbootstrap-clean-blog/img/home-bg.jpg") no-repeat center center fixed;
+      background: url("images/banner3.jpg") no-repeat center center fixed;
     }
   }
   &#contact {
-    & .banner {
-      background: url("http://ironsummitmedia.github.io/startbootstrap-agency/img/header-bg.jpg") no-repeat center center fixed;
-    }
     & span {
       padding-left: 5px;
     }
@@ -266,13 +269,13 @@ p {
   max-width: 700px;
   height: 400px;
   &:nth-child(1) {
-    background: url("http://lorempixel.com/700/400/transport/1");
+    background: url("images/carousel1.jpeg");
   }
   &:nth-child(2) {
-    background: url("http://lorempixel.com/700/400/transport/2");
+    background: url("images/carousel2.jpeg");
   }
   &:nth-child(3) {
-    background: url("http://lorempixel.com/700/400/transport/3");
+    background: url("images/carousel3.jpeg");
   }
 }
 p:nth-child(2n) {
@@ -324,4 +327,29 @@ h2{
     font-size: 20px;
     line-height: 65px;
   }
+}
+h4 {
+  display: block;
+  color: white;
+  font-size: 2em;
+  -webkit-margin-before: 1.33em;
+  -webkit-margin-after: 1.33em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+}
+.grid-caption {
+  display: none;
+  position: absolute;
+  top: 0;
+  background: rgba(67, 95, 110, 0.88);
+  text-align: center;
+  padding: 0em 2em 0em 2em;
+  bottom: 0;
+}
+.product-items:hover .grid-caption {
+  display: block;
+}
+.product-items:hover .grid-caption {
+  display: block;
 }
