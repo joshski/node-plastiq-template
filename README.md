@@ -1,5 +1,5 @@
 ## Node JS + Plastiq Project Template
-The websites of today all looks the same. Here is the basic template using [Node](https://nodejs.org/) and [Plastiq](https://github.com/featurist/plastiq)
+The websites of today all look the same. Here is a basic template using [Node](https://nodejs.org/) and [Plastiq](https://github.com/featurist/plastiq)
 ##DEMO
 [DEMO](http://dobiedad.github.io/node-plastiq-template/)
 ## Install
