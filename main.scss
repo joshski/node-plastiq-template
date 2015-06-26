@@ -57,13 +57,12 @@ body {
     background: white;
   }
 }
-#banner {
-  height: 100%;
-  background: url("https://raw.githubusercontent.com/IronSummitMedia/startbootstrap-stylish-portfolio/gh-pages/img/bg.jpg") no-repeat center center fixed;
+.banner {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 50%;
 }
 .section {
   min-height: 100vh;
@@ -71,6 +70,11 @@ body {
   text-align: center;
   &#home {
     padding-top: 0;
+  & .banner {
+      background: url("https://raw.githubusercontent.com/IronSummitMedia/startbootstrap-stylish-portfolio/gh-pages/img/bg.jpg") no-repeat center center fixed;
+      height: 100%;
+
+    }
   }
   &#about {
     background: $navBlue;
@@ -82,9 +86,15 @@ body {
   }
   &#products {
     background: $darkBlue;
+    & .banner {
+      background: url("http://ironsummitmedia.github.io/startbootstrap-clean-blog/img/home-bg.jpg") no-repeat center center fixed;
+    }
   }
   &#contact {
-    background: yellow;
+    background: black;
+    & .banner {
+      background: url("http://ironsummitmedia.github.io/startbootstrap-agency/img/header-bg.jpg") no-repeat center center fixed;
+    }
   }
 }
 .overlay {
@@ -143,6 +153,7 @@ h1 {
   padding-top: 20px;
   font-size: 55px;
   text-shadow: #42dca3 1px 1px;
+  color: white;
 }
 p {
   max-width: 700px;
@@ -281,18 +292,11 @@ h2{
   filter:blur(12px);
 }
 .product-items{
-  height: 150px;
-   background-color: #ddd;
-   margin-bottom: 30px;
-   &:nth-child(1) {
-     background: url("http://lorempixel.com/500/150/nightlife/1");
-   }
-   &:nth-child(2) {
-     background: url("http://lorempixel.com/500/150/nightlife/2");
-   }
-   &:nth-child(3) {
-     background: url("http://lorempixel.com/500/150/nightlife/3");
-   }
+  position: relative;
+  & img{
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 .container {
   margin-top: 50px;

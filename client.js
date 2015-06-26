@@ -18,18 +18,29 @@ function smoothScroll(ev) {
   ev.preventDefault();
   return false;
 };
+
 function render(model) {
   return h('div',
-    h('nav#nav.navbar.navbar-default.wow.bounceInDown',{attributes: {'role': 'navigation','data-wow-delay': '0.2s'}},
-        h('button.navbar-toggle',{attributes: {'data-toggle': 'collapse','data-target': '.navbar-collapse'}},
-          h('span.icon-bar.top-bar'),
-          h('span.icon-bar.middle-bar'),
-          h('span.icon-bar.bottom-bar')
-        ),
-        h('a.logo',
-          h('i.fa.fa-money'),
-          h('span', 'My Business')
-        ),
+    h('nav#nav.navbar.navbar-default.wow.bounceInDown', {
+        attributes: {
+          'role': 'navigation',
+          'data-wow-delay': '0.2s'
+        }
+      },
+      h('button.navbar-toggle', {
+          attributes: {
+            'data-toggle': 'collapse',
+            'data-target': '.navbar-collapse'
+          }
+        },
+        h('span.icon-bar.top-bar'),
+        h('span.icon-bar.middle-bar'),
+        h('span.icon-bar.bottom-bar')
+      ),
+      h('a.logo',
+        h('i.fa.fa-money'),
+        h('span', 'My Business')
+      ),
       h('div.collapse.navbar-collapse',
         h('ul#nav-links.nav.navbar-nav',
           h('li',
@@ -58,28 +69,45 @@ function render(model) {
     ),
     h('div#main',
       h('div#home.section',
-        h('div#banner'),
+        h('div.banner'),
         h('div.overlay'),
-        h('div#banner-title.wow.bounceInUp',{attributes: {'data-wow-delay': '0.4s'}},
+        h('div#banner-title.wow.fadeIn', {
+            attributes: {
+              'data-wow-delay': '0.4s'
+            }
+          },
           h('h1', 'Welcome!'),
           h('p', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
-          h('a.btn.button.wow.shake',{
+          h('a.btn.button.wow.shake', {
             href: '#about',
             onclick: smoothScroll,
-            attributes: {'data-wow-delay': '2s'}
+            attributes: {
+              'data-wow-delay': '1.5s'
+            }
           }, 'Explore')
         )
       ),
       h('div#about.section',
         h('h1', 'About'),
-        h('p.wow.bounceInUp',{attributes: {'role': 'navigation','data-wow-delay': '0.4s'}},
-         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
-        h('p.wow.bounceInDown',{attributes: {'role': 'navigation','data-wow-delay': '0.6s'}},
-         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part ula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
-        h('p.wow.bounceInUp',{attributes: {'role': 'navigation','data-wow-delay': '0.8s'}},
-         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
+        h('div.content.wow.fadeInDown', {
+            attributes: {
+              'data-wow-delay': '0.4s'
+            }
+          },
+          h('p',
+            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa'),
+          h('p',
+            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part ula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part'),
+          h('p',
+            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis part Aenean massa. Cum sociis natoque penatibus et magnis dis part')
+        ),
         h('h2', 'More'),
-        h('div#carousel.carousel.slide.carousel-fade.wow.bounceInUp',{attributes: {'role': 'navigation','data-wow-delay': '0.6s'}},
+        h('div#carousel.carousel.slide.carousel-fade.wow.fadeInUp', {
+            attributes: {
+              'role': 'navigation',
+              'data-wow-delay': '0.6s'
+            }
+          },
           h('div.carousel-inner',
             h('div.item.active',
               h('div.carousel-caption',
@@ -104,26 +132,90 @@ function render(model) {
         )
       ),
       h('div#products.section',
+      h('div.banner'),
         h('h1', 'Products'),
         h('div.container',
           h('div.row',
-            h('div.col-sm-3.col-xs-6',
-              h('div.product-items')
+            h('div.col-md-4.wow.bounceIn', {
+                attributes: {
+                  'data-wow-delay': '0.4s'
+                }
+              },
+              h('div.product-items',
+                h('img', {
+                  attributes: {
+                    'src': 'http://lorempixel.com/450/350/nightlife/1'
+                  }
+                })
+              )
             ),
-            h('div.col-sm-3.col-xs-6',
-              h('div.product-items')
-            ),
-            h('div.col-sm-3.col-xs-6',
-              h('div.product-items')
-            ),
-            h('div.col-sm-3.col-xs-6',
-              h('div.product-items')
-            )
+            h('div.col-md-4.wow.bounceIn', {
+                attributes: {
+                  'data-wow-delay': '0.4s'
+                }
+              },
+              h('div.product-items',
+                h('img', {
+                  attributes: {
+                    'src': 'http://lorempixel.com/450/350/nightlife/2'
+                  }
+                })
+              )),
+            h('div.col-md-4.wow.bounceIn', {
+                attributes: {
+                  'data-wow-delay': '0.4s'
+                }
+              },
+              h('div.product-items',
+                h('img', {
+                  attributes: {
+                    'src': 'http://lorempixel.com/450/350/nightlife/3'
+                  }
+                })
+              )),
+            h('div.col-md-4.wow.bounceIn', {
+                attributes: {
+                  'data-wow-delay': '0.4s'
+                }
+              },
+              h('div.product-items',
+                h('img', {
+                  attributes: {
+                    'src': 'http://lorempixel.com/450/350/nightlife/4'
+                  }
+                })
+              )),
+            h('div.col-md-4.wow.bounceIn', {
+                attributes: {
+                  'data-wow-delay': '0.4s'
+                }
+              },
+              h('div.product-items',
+                h('img', {
+                  attributes: {
+                    'src': 'http://lorempixel.com/450/350/nightlife/5'
+                  }
+                })
+              )),
+            h('div.col-md-4.wow.bounceIn', {
+                attributes: {
+                  'data-wow-delay': '0.4s'
+                }
+              },
+              h('div.product-items',
+                h('img', {
+                  attributes: {
+                    'src': 'http://lorempixel.com/450/350/nightlife/6'
+                  }
+                })
+              ))
           )
         )
       ),
       h('div#contact.section',
-        h('h1', 'Contact')
+        h('div.banner'),
+        h('h1', 'Contact'),
+        h('div.container')
       )
     )
   );
@@ -133,21 +225,21 @@ $(document).ready(function() {
   $('body').scrollspy();
   new WOW().init();
   $('#carousel').carousel({
-  interval: 8000
-});
-  $(".navbar-nav li a").click(function (event) {
+    interval: 8000
+  });
+  $(".navbar-nav li a").click(function(event) {
     $(".navbar-collapse").collapse('hide');
     $(".navbar-toggle").toggleClass("toggled");
 
   });
-  $(".navbar-toggle").on("click", function () {
-      $(this).toggleClass("toggled");
+  $(".navbar-toggle").on("click", function() {
+    $(this).toggleClass("toggled");
   });
 });
-  $(window).scroll(function(){
-    var body = $('body');
-    var top = $(this).scrollTop();
-  });
+$(window).scroll(function() {
+  var body = $('body');
+  var top = $(this).scrollTop();
+});
 plastiq.append(document.body, render, {
   name: ''
 });
