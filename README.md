@@ -7,7 +7,7 @@ The websites of today all looks the same. Here is the basic template for [Node](
 ####Clone repo  
 
 ```
-git clone https://github.com/featurist/steele-and-brown.git
+git clone https://github.com/dobiedad/node-plastiq-template
 ```
 
 ## Setup
