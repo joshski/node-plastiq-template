@@ -19,6 +19,142 @@ function smoothScroll(ev) {
   return false;
 };
 
+google.maps.event.addDomListener(window, 'load', init);
+var london = new google.maps.LatLng(51.5081, -0.1281);
+
+function init() {
+  var mapOptions = {
+    center: london,
+    zoom: 17,
+    scrollwheel: false,
+    navigationControl: false,
+    mapTypeControl: false,
+    zoomControl: false,
+
+
+    scaleControl: false,
+    disableDefaultUI: true,
+    styles: [{
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 17
+      }]
+    }, {
+      "featureType": "landscape",
+      "elementType": "geometry",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 20
+      }]
+    }, {
+      "featureType": "road.highway",
+      "elementType": "geometry.fill",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 17
+      }]
+    }, {
+      "featureType": "road.highway",
+      "elementType": "geometry.stroke",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 29
+      }, {
+        "weight": 0.2
+      }]
+    }, {
+      "featureType": "road.arterial",
+      "elementType": "geometry",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 18
+      }]
+    }, {
+      "featureType": "road.local",
+      "elementType": "geometry",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 16
+      }]
+    }, {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 21
+      }]
+    }, {
+      "elementType": "labels.text.stroke",
+      "stylers": [{
+        "visibility": "on"
+      }, {
+        "color": "#000000"
+      }, {
+        "lightness": 16
+      }]
+    }, {
+      "elementType": "labels.text.fill",
+      "stylers": [{
+        "saturation": 36
+      }, {
+        "color": "#42dca3"
+      }, {
+        "lightness": 40
+      }]
+    }, {
+      "elementType": "labels.icon",
+      "stylers": [{
+        "visibility": "on"
+      }]
+    }, {
+      "featureType": "transit",
+      "elementType": "geometry",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 19
+      }]
+    }, {
+      "featureType": "administrative",
+      "elementType": "geometry.fill",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 20
+      }]
+    }, {
+      "featureType": "administrative",
+      "elementType": "geometry.stroke",
+      "stylers": [{
+        "color": "#000000"
+      }, {
+        "lightness": 17
+      }, {
+        "weight": 1.2
+      }]
+    }]
+  };
+  var mapElement = document.getElementById('map');
+  var map = new google.maps.Map(mapElement, mapOptions);
+  var image = 'http://icons.iconarchive.com/icons/carlosjj/google-jfk/48/maps-icon.png';
+  var myLatLng = london;
+  var beachMarker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    icon: image
+  });
+}
+
+
 function render(model) {
   return h('div',
     h('nav#nav.navbar.navbar-default.wow.bounceInDown', {
@@ -132,7 +268,7 @@ function render(model) {
         )
       ),
       h('div#products.section',
-      h('div.banner'),
+        h('div.banner'),
         h('h1', 'Products'),
         h('div.container',
           h('div.row',
@@ -215,7 +351,34 @@ function render(model) {
       h('div#contact.section',
         h('div.banner'),
         h('h1', 'Contact'),
-        h('div.container')
+        h('div.container',
+          h('div.contact-details',
+            h('p.address', 'My Business', h('br'), '18 Jamestone Road', h('br'), 'EC1R 9JQ, London', h('br'), 'United Kingdom'),
+            h('a', {
+              href: 'mailto:test@test.com',
+            }, 'test@test.com'),
+            h('br'),
+
+            h('a.btn.button', {
+                href: 'www.facebook.com'
+              },
+              h('i.fa.fa-phone'),
+              h('span', 'Call Us')
+            ), h('a.btn.button', {
+                href: 'www.facebook.com'
+              },
+              h('i.fa.fa-facebook'),
+              h('span', 'Facebook')
+            ), h('a.btn.button', {
+                href: 'www.facebook.com'
+              },
+              h('i.fa.fa-github'),
+              h('span', 'Github')
+            )
+          ),
+          h('div#map')
+
+        )
       )
     )
   );
